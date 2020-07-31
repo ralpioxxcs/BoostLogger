@@ -1,3 +1,14 @@
-include_directories(${CMAKE_SOURCE_DIR}/src)
-add_executable(test test.cpp ${CMAKE_SOURCE_DIR}/src/logger.cpp)
+cmake_minimum_required(VERSION 3.1)
+cmake_policy(VERSION 3.1)
+
+find_package(
+  Boost 
+  1.65.1 
+  REQUIRED
+  COMPONENTS 
+  filesystem
+  log)
+
+include_directories(${CMAKE_SOURCE_DIR}/..)
+add_executable(test test.cpp)
 target_link_libraries(test ${Boost_LIBRARIES} -lpthread)
